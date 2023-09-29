@@ -6,43 +6,60 @@ function getComputerChoice() {
   return compChoice;
 }
 
+let won = 0;
+let lost = 0;
+
 function oneRound(playerSelection, computerSelection) {
   computerSelection = getComputerChoice();
-  playerSelection = playerSelection.toLowerCase();
-  //  if playerSelection equals computerSelection
-  // return "It's a tie!"
-  if (playerSelection == computerSelection) {
-    return "It's a tie!";
-  }
-  // else if playerSelection is rock :
-  //  if computer selection is paper then return "lost"
-  // else  return "you won"
-  else if (playerSelection == "rock") {
-    if (computerSelection == "paper") {
-      return "You lost, Paper beats Rock";
-    } else {
-      return "You won!, Rock beats Scissors";
-    }
-  }
-  // else if playerSelection is paper :
-  //  if computer selection is scissors then return "lost"
-  // else  return "you won"
-  else if (playerSelection == "paper") {
-    if (computerSelection == "scissors") {
-      return "You lost, Scissors beats Paper";
-    } else {
-      return "You won!, Paper beats rock";
-    }
-  }
+  playerSelection = prompt("Input your selection here:").toLowerCase();
 
-  // else if playerSelection is scissors :
-  //  if computer selection is rock then return "lost"
-  // else  return "you won"
-  else if (playerSelection == "scissors") {
-    if (computerSelection == "rock") {
-      return "You lost, Rock beats Scissors";
+  if (playerSelection == computerSelection) {
+    alert("It's a tie!");
+  } else if (playerSelection == "rock") {
+    if (computerSelection == "paper") {
+      lost++;
+      alert("Computer chose Paper, you lost!");
     } else {
-      return "You Won!, Scissors beats Paper";
+      won++;
+      alert("Computer chose Scissors, you won!");
     }
+  } else if (playerSelection == "paper") {
+    if (computerSelection == "scissors") {
+      lost++;
+      alert("Computer chose Scissors, you lost!");
+    } else {
+      won++;
+      alert("Computer chose Rock, you won!");
+    }
+  } else if (playerSelection == "scissors") {
+    if (computerSelection == "rock") {
+      lost++;
+      alert("Computer chose Rock, you lost!");
+    } else {
+      won++;
+      alert("Computer chose Paper, you won!");
+    }
+  }
+}
+
+function game() {
+  // this is used temporarily instead of a loop
+  console.log(oneRound());
+  alert("You won " + won + " and lost " + lost);
+  console.log(oneRound());
+  alert("You won " + won + " and lost " + lost);
+  console.log(oneRound());
+  alert("You won " + won + " and lost " + lost);
+  console.log(oneRound());
+  alert("You won " + won + " and lost " + lost);
+  console.log(oneRound());
+  alert("You won " + won + " and lost " + lost);
+  // concludes the winner
+  if (won > lost) {
+    alert("Congratulation you beat the computer");
+  } else if (won == lost) {
+    alert("Game over, it's a tie");
+  } else {
+    alert("Game over, the computer won!");
   }
 }
